@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ranking Gamer GX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>⚡ Ranking Gamer GX</h1>
+    <p>PlayStation • Xbox • Steam • RetroAchievements</p>
+  </header>
+
+  <main>
+    <div class="filter">
+      <label for="platform-filter">Filtrar por plataforma:</label>
+      <select id="platform-filter">
+        <option value="total">Todas (Total)</option>
+        <option value="psn">PSN</option>
+        <option value="xbox">Xbox</option>
+        <option value="steam">Steam</option>
+        <option value="retro">RetroAchievements</option>
+      </select>
+    </div>
+
+    <table id="ranking">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Jogador</th>
+          <th>PSN</th>
+          <th>Xbox</th>
+          <th>Steam</th>
+          <th>Retro</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <footer>Atualizado automaticamente via GitHub Actions</footer>
+  <script src="script.js"></script>
+</body>
+</html>
