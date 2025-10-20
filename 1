@@ -1,0 +1,44 @@
+// Jogadores já incluídos diretamente no script
+let players = [
+  {"nome":"Denis","psn":"Mansell098","xbox":"GMG Mansell","steamId":"arcadianos","retroUser":"DenisFaria"},
+  {"nome":"Cesar","psn":"Mmontagnani","xbox":"HexagonalMango0","steamId":"","retroUser":""},
+  {"nome":"Marcelo","psn":"Wonederz007","xbox":"WonederS","steamId":"Wonederz","retroUser":"wonederz"},
+  {"nome":"Renato","psn":"renatocobain","xbox":"tiao cobain","steamId":"","retroUser":""},
+  {"nome":"Luiz","psn":"luizpalmeirense","xbox":"luiz palmeirese","steamId":"","retroUser":""},
+  {"nome":"Weliton","psn":"WelitonBalby","xbox":"","steamId":"","retroUser":"wgbalby"},
+  {"nome":"Nay","psn":"","xbox":"","steamId":"","retroUser":"nayborges"}
+];
+
+// Adicionar pontuação de teste (pode ser atualizada depois)
+players = players.map(p => ({
+  ...p,
+  psnScore: p.psn ? 1000 : 0,
+  xboxScore: p.xbox ? 800 : 0,
+  steamScore: p.steamId ? 1200 : 0,
+  retroScore: p.retroUser ? 1500 : 0,
+  total: (p.psn ? 1000 : 0) + (p.xbox ? 800 : 0) + (p.steamId ? 1200 : 0) + (p.retroUser ? 1500 : 0)
+}));
+
+function renderTable(data, platform) {
+  const tbody = document.querySelector('#ranking tbody');
+  const sorted = [...data].sort((a,b) => (b[platform] || 0) - (a[platform] || 0));
+  tbody.innerHTML = sorted.map((p,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td>${p.nome}</td>
+      <td><a href="https://psnprofiles.com/${p.psn}" target="_blank">${p.psnScore}</a></td>
+      <td><a href="https://account.xbox.com/Profile?gamertag=${p.xbox}" target="_blank">${p.xboxScore}</a></td>
+      <td><a href="https://steamcommunity.com/profiles/${p.steamId}" target="_blank">${p.steamScore}</a></td>
+      <td><a href="https://retroachievements.org/user/${p.retroUser}" target="_blank">${p.retroScore}</a></td>
+      <td><strong>${p.total}</strong></td>
+    </tr>
+  `).join('');
+}
+
+document.getElementById('platform-filter').addEventListener('change', (e)=>{
+  const platform = e.target.value; // total, psn, xbox, steam, retro
+  renderTable(players, platform);
+});
+
+// Inicializar tabela com Total
+renderTable(players, 'total');
